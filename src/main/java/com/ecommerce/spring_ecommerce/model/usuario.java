@@ -1,6 +1,19 @@
 package com.ecommerce.spring_ecommerce.model;
 
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "usuarios")
 public class usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String username;
@@ -9,6 +22,12 @@ public class usuario {
     private String direccion;
     private String telefono;
     private String tipo;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<producto> productos;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<orden> ordenes;
 
 
     public usuario() {
@@ -40,10 +59,10 @@ public class usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
-    public void setUserName(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
     public String getPassword() {
@@ -75,6 +94,18 @@ public class usuario {
     }
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    public List<producto> getProductos() {
+        return productos;
+    }
+    public void setProductos(List<producto> productos) {
+        this.productos = productos;
+    }
+    public List<orden> getOrdenes() {
+        return ordenes;
+    }
+    public void setOrdenes(List<orden> ordenes) {
+        this.ordenes = ordenes;
     }
 
 

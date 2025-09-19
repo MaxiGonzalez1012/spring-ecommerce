@@ -1,6 +1,17 @@
 package com.ecommerce.spring_ecommerce.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "productos")
 public class producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
@@ -8,18 +19,22 @@ public class producto {
     private double precio;
     private int cantidad;
 
+    @ManyToOne
+    private usuario usuario;
+
 
     public producto() {
     }
 
 
-    public producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad) {
+    public producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, usuario usuario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.usuario = usuario;
     }
 
     
@@ -59,6 +74,13 @@ public class producto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+    public usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(usuario usuario) {
+        this.usuario = usuario;
+    }
+
 
     
     @Override
