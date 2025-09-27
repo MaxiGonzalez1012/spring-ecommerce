@@ -18,17 +18,15 @@ public class detalleOrden {
     private double cantidad;
     private double precio;
     private double total;
-    
+
     @OneToOne
     private orden orden;
 
     @ManyToOne
     private producto producto;
 
-
     public detalleOrden() {
     }
-
 
     public detalleOrden(Integer id, String nombre, double cantidad, double precio, double total) {
         this.id = id;
@@ -38,51 +36,62 @@ public class detalleOrden {
         this.total = total;
     }
 
-
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public double getCantidad() {
         return cantidad;
     }
+
     public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
+
     public double getPrecio() {
         return precio;
     }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
     public double getTotal() {
         return total;
     }
+
     public void setTotal(double total) {
         this.total = total;
     }
+
     public orden getOrden() {
         return orden;
     }
+
     public void setOrden(orden orden) {
         this.orden = orden;
     }
+
     public producto getProducto() {
         return producto;
     }
+
     public void setProducto(producto producto) {
         this.producto = producto;
     }
 
-    
     @Override
     public String toString() {
         return "detalleOrden [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio

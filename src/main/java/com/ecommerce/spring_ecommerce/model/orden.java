@@ -27,10 +27,8 @@ public class orden {
     @OneToOne(mappedBy = "orden")
     private detalleOrden detalle;
 
-
     public orden() {
     }
-
 
     public orden(Integer id, String numero, Date fechaCreacion, Date fechaRecibida, double total) {
         this.id = id;
@@ -40,50 +38,62 @@ public class orden {
         this.total = total;
     }
 
-
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getNumero() {
         return numero;
     }
+
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
+
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
     public Date getFechaRecibida() {
         return fechaRecibida;
     }
+
     public void setFechaRecibida(Date fechaRecibida) {
         this.fechaRecibida = fechaRecibida;
     }
+
     public double getTotal() {
         return total;
     }
+
     public void setTotal(double total) {
         this.total = total;
     }
+
     public usuario getUsuario() {
         return usuario;
     }
+
     public void setUsuario(usuario usuario) {
         this.usuario = usuario;
     }
+
     public detalleOrden getDetalle() {
         return detalle;
     }
+
     public void setDetalle(detalleOrden detalle) {
         this.detalle = detalle;
     }
-    
+
     @Override
     public String toString() {
         return "orden [id=" + id + ", numero=" + numero + ", fechaCreacion=" + fechaCreacion + ", fechaRecibida="
