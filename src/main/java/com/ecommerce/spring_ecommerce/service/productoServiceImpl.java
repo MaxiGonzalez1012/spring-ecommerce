@@ -39,6 +39,5 @@ public class productoServiceImpl implements ProductoService {
     public List<producto> findAll() {
         return productoRepository.findAll();
     }
-    
 
 }
