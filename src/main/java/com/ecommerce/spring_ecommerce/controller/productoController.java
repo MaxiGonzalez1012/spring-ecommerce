@@ -52,15 +52,6 @@ public class productoController {
         if (producto.getId() == null) { // Cuando se crea un producto
             String nombreImagen = upload.saveImage(file);
             producto.setImagen(nombreImagen);
-        } else {
-            if (file.isEmpty()) { // cuando se edita el producto pero no se cambia la imagen
-                producto p = new producto();
-                p = productoService.get(producto.getId()).get();
-                producto.setImagen(p.getImagen());
-            } else {
-                String nombreImagen = upload.saveImage(file);
-                producto.setImagen(nombreImagen);
-            }
         }
 
         productoService.save(producto);
@@ -79,13 +70,36 @@ public class productoController {
     }
 
     @PostMapping("/update")
-    public String update(producto producto) {
+    public String update(producto producto, @RequestParam("img") MultipartFile file) throws IOException {
+        producto p = new producto();
+        p = productoService.get(producto.getId()).get();
+
+        if (file.isEmpty()) { // cuando se edita el producto pero no se cambia la imagen
+
+            producto.setImagen(p.getImagen());
+        } else {
+            if (!p.getImagen().equals("default.jpg")) { // Eliminar cuando no sea la imagen por defecto
+                upload.deleteImage(p.getImagen());
+            }
+
+            String nombreImagen = upload.saveImage(file);
+            producto.setImagen(nombreImagen);
+        }
+        producto.setUsuario(p.getUsuario());
         productoService.update(producto);
         return "redirect:/productos";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
+
+        producto p = new producto();
+        p = productoService.get(id).get();
+
+        if (!p.getImagen().equals("default.jpg")) { // Eliminar cuando no sea la imagen por defecto
+            upload.deleteImage(p.getImagen());
+        }
+
         productoService.delete(id);
         return "redirect:/productos";
     }

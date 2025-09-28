@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class uploadFileService {
-    private String folder = "images//";
+    private String folder = "imagen//";
 
     public String saveImage(MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
