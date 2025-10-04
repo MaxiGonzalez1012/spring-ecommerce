@@ -1,0 +1,9 @@
+package com.ecommerce.spring_ecommerce.service;
+
+import java.util.Optional;
+
+import com.ecommerce.spring_ecommerce.model.usuario;
+
+public interface IUsuarioService {
+    Optional<usuario> findById(Integer id);
+}
