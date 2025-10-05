@@ -1,6 +1,7 @@
 package com.ecommerce.spring_ecommerce.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,8 @@ import com.ecommerce.spring_ecommerce.model.detalleOrden;
 import com.ecommerce.spring_ecommerce.model.orden;
 import com.ecommerce.spring_ecommerce.model.producto;
 import com.ecommerce.spring_ecommerce.model.usuario;
+import com.ecommerce.spring_ecommerce.service.IDetalleOrdenService;
+import com.ecommerce.spring_ecommerce.service.IOrdenService;
 import com.ecommerce.spring_ecommerce.service.IUsuarioService;
 import com.ecommerce.spring_ecommerce.service.ProductoService;
 
@@ -37,6 +40,12 @@ public class homeController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private IOrdenService ordenService;
+
+    @Autowired
+    private IDetalleOrdenService detalleOrdenService;
 
     @GetMapping("")
     public String home(Model model) {
@@ -130,5 +139,27 @@ public class homeController {
         model.addAttribute("usuario", usuario);
 
         return "/usuario/resumenorden";
+    }
+
+    @GetMapping("/saveOrder")
+    public String saveOrder(){
+        Date fechaCreacion = new Date();
+        orden.setFechaCreacion(fechaCreacion);
+        orden.setNumero(ordenService.generarNumeroOrden());
+
+        usuario usuario = usuarioService.findById(1).get();
+
+        orden.setUsuario(usuario);
+        ordenService.save(orden);
+
+        for (detalleOrden dt : detalles) {
+            dt.setOrden(orden);
+            detalleOrdenService.save(dt);
+        }
+
+        orden = new orden();
+        detalles.clear();
+
+        return "redirect:/";
     }
 }
