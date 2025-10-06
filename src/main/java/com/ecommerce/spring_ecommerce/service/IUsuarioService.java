@@ -6,4 +6,6 @@ import com.ecommerce.spring_ecommerce.model.usuario;
 
 public interface IUsuarioService {
     Optional<usuario> findById(Integer id);
+
+    usuario save(usuario usuario);
 }
