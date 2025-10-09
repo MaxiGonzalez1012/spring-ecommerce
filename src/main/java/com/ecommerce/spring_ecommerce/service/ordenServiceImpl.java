@@ -2,6 +2,7 @@ package com.ecommerce.spring_ecommerce.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,11 @@ public class ordenServiceImpl implements IOrdenService {
 	@Override
 	public List<orden> findByUsuario(usuario usuario) {
 		return ordenRepository.findByUsuario(usuario);
+	}
+
+	@Override
+	public Optional<orden> findById(Integer id) {
+		return ordenRepository.findById(id);
 	}
 
 }
