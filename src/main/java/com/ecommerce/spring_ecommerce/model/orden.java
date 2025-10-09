@@ -1,13 +1,14 @@
 package com.ecommerce.spring_ecommerce.model;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,8 +25,8 @@ public class orden {
     @ManyToOne
     private usuario usuario;
 
-    @OneToOne(mappedBy = "orden")
-    private detalleOrden detalle;
+    @OneToMany(mappedBy = "orden")
+    private List<detalleOrden> detalle;
 
     public orden() {
     }
@@ -86,11 +87,11 @@ public class orden {
         this.usuario = usuario;
     }
 
-    public detalleOrden getDetalle() {
+    public List<detalleOrden> getDetalle() {
         return detalle;
     }
 
-    public void setDetalle(detalleOrden detalle) {
+    public void setDetalle(List<detalleOrden> detalle) {
         this.detalle = detalle;
     }
 
