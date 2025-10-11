@@ -30,17 +30,27 @@ Se planea incorporar **Spring Security** para implementar autenticación y autor
 
 ### 🚀 Instrucciones
 1. Clonar el repositorio:
-   git clone https://github.com/usuario/spring-ecommerce.git
+```
+git clone https://github.com/usuario/spring-ecommerce.git
+```
 2. Acceder al directorio del proyecto:
-    cd spring-ecommerce
+```
+cd spring-ecommerce
+```
 3. Configurar las credenciales de la base de datos en el archivo **application.properties**:
-    spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce
-    spring.datasource.username=tu_usuario
-    spring.datasource.password=tu_contraseña
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+```
 4. Ejecutar el proyecto:
-    mvn spring-boot:run
+```
+mvn spring-boot:run
+```
 5. Acceder desde el navegador:
-    http://localhost:8080
+```
+http://localhost:8080
+```
 
 ---
 
