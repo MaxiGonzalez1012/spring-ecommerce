@@ -11,7 +11,7 @@ public interface IOrdenService {
 
     Optional<orden> findById(Integer id);
 
-    orden save (orden orden);
+    orden save(orden orden);
 
     String generarNumeroOrden();
 

@@ -7,7 +7,7 @@ import com.ecommerce.spring_ecommerce.model.detalleOrden;
 import com.ecommerce.spring_ecommerce.repository.IDetalleOrdenRepository;
 
 @Service
-public class detalleOrdenServiceImpl implements IDetalleOrdenService{
+public class detalleOrdenServiceImpl implements IDetalleOrdenService {
 
     @Autowired
     private IDetalleOrdenRepository detalleOrdenRepository;

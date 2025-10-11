@@ -62,17 +62,17 @@ public class homeController {
         return "usuario/home";
     }
 
-	@GetMapping("productohome/{id}")
-	public String productoHome(@PathVariable Integer id, Model model) {
-		log.info("Id producto enviado como parámetro {}", id);
+    @GetMapping("productohome/{id}")
+    public String productoHome(@PathVariable Integer id, Model model) {
+        log.info("Id producto enviado como parámetro {}", id);
         producto producto = new producto();
         Optional<producto> productoOptional = productoService.get(id);
         producto = productoOptional.get();
 
         model.addAttribute("producto", producto);
 
-		return "usuario/productohome";
-	}
+        return "usuario/productohome";
+    }
 
     @PostMapping("/cart")
     public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model) {
@@ -88,14 +88,14 @@ public class homeController {
         detalleOrden.setCantidad(cantidad);
         detalleOrden.setPrecio(producto.getPrecio());
         detalleOrden.setNombre(producto.getNombre());
-        detalleOrden.setTotal(producto.getPrecio()*cantidad);
+        detalleOrden.setTotal(producto.getPrecio() * cantidad);
         detalleOrden.setProducto(producto);
 
         Integer idProducto = producto.getId();
         boolean ingresado = detalles.stream().anyMatch(p -> p.getProducto().getId() == idProducto);
 
         if (!ingresado) {
-            detalles.add(detalleOrden);    
+            detalles.add(detalleOrden);
         }
 
         sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
@@ -125,7 +125,7 @@ public class homeController {
         orden.setTotal(sumaTotal);
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
-        
+
         return "usuario/carrito";
     }
 
@@ -151,7 +151,7 @@ public class homeController {
     }
 
     @GetMapping("/saveOrder")
-    public String saveOrder(HttpSession session){
+    public String saveOrder(HttpSession session) {
         Date fechaCreacion = new Date();
         orden.setFechaCreacion(fechaCreacion);
         orden.setNumero(ordenService.generarNumeroOrden());
@@ -175,7 +175,8 @@ public class homeController {
     @PostMapping("/search")
     public String searchProduct(@RequestParam String nombre, Model model) {
         log.info("nombre del producto: {}", nombre);
-        List<producto> productos = productoService.findAll().stream().filter(p -> p.getNombre().contains(nombre)).collect(Collectors.toList());
+        List<producto> productos = productoService.findAll().stream().filter(p -> p.getNombre().contains(nombre))
+                .collect(Collectors.toList());
         model.addAttribute("productos", productos);
 
         return "usuario/home";

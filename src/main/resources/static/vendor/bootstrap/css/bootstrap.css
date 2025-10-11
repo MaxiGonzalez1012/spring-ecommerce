@@ -6107,7 +6107,7 @@ a.close.disabled {
 }
 
 .modal-footer > * {
-  margin: 0.25rem;
+  margin: 0;
 }
 
 .modal-scrollbar-measure {

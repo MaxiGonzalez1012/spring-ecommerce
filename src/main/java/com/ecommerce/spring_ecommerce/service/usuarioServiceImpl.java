@@ -10,7 +10,7 @@ import com.ecommerce.spring_ecommerce.model.usuario;
 import com.ecommerce.spring_ecommerce.repository.IUsuarioRepository;
 
 @Service
-public class usuarioServiceImpl implements IUsuarioService{
+public class usuarioServiceImpl implements IUsuarioService {
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
@@ -33,5 +33,5 @@ public class usuarioServiceImpl implements IUsuarioService{
     @Override
     public List<usuario> findAll() {
         return usuarioRepository.findAll();
-    }  
+    }
 }

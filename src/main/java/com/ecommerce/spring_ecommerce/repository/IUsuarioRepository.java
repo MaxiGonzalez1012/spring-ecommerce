@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.ecommerce.spring_ecommerce.model.usuario;
 
 @Repository
-public interface IUsuarioRepository extends JpaRepository<usuario, Integer>{
+public interface IUsuarioRepository extends JpaRepository<usuario, Integer> {
     Optional<usuario> findByEmail(String email);
 }
